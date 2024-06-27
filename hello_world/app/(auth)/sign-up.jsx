@@ -19,7 +19,7 @@ const SignUp = () => {
   return (
     <SafeAreaView className="text-white h-full">
       <ScrollView>
-        <View className="w-full justify-center h-full px-4 my-6">
+        <View className="w-full justify-center min-h-[70vh] px-4 my-6">
           <Text className="text-3xl font-ibold">
             Log in
           </Text>
