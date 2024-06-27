@@ -1,17 +1,26 @@
 import { useCallback } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Button, ScrollView, Text, View, StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
-import { Link } from 'expo-router';
+import { Redirect, router } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={{ fontFamily: 'Inter-Black', fontSize: 30 }}>Hello World</Text>
-      <Link href="/home" style={{ color: 'blue' }}>Go to Home</Link>
-    </View>
+    <SafeAreaView className="h-full">
+      <ScrollView contentContainerStyle={{ height: '100%'}}>
+        <View className="w-full justify-center items-center h-full px-4">
+           <Text style={{ fontFamily: 'Inter-Black', fontSize: 30 }}>Hello World</Text>
+           <Button
+              title="Sign Up"
+              handlePress={() => router.push()}
+              containerStyles="w-full mt-7"
+           />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
