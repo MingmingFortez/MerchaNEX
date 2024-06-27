@@ -7,24 +7,10 @@ import * as SplashScreen from 'expo-splash-screen';
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const [fontsLoaded, fontError] = useFonts({
-    'Inter-Black': require('../assets/fonts/Inter-Black.ttf'),
-  });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded || fontError) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded, fontError]);
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
-
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
+    <View style={styles.container}>
       <Text style={{ fontFamily: 'Inter-Black', fontSize: 30 }}>Hello World</Text>
-      <Link href="/profile" style={{ color: 'blue' }}>Go to Profile</Link>
+      <Link href="/home" style={{ color: 'blue' }}>Go to Home</Link>
     </View>
   );
 }
