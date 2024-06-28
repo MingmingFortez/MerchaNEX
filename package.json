@@ -7,3 +7,4 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf build && cd ./client && npm run build --prod && cp -r build ../"
   }
+}
