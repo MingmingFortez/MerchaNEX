@@ -1,35 +1,27 @@
-import { ScrollView, View, Text } from 'react-native';
-import React from 'react';
+import { View, Text, ScrollView, Alert } from 'react-native'
+import React from 'react'
+import CustomButton from '../../components/CustomButton';
 
 const Activity = () => {
+  const handlePress = () => {
+    Alert.alert('Button Pressed', 'You pressed the custom button!');
+  };
+
   return (
-    <ScrollView>
-      <View>
-        <Text>Activity</Text>
+    <ScrollView contentContainerStyle={{ padding: 16 }}>
+      <View style={{ marginBottom: 20 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Activity</Text>
+        <Text style={{ marginVertical: 20 }}>Playing around with it fr</Text>
         
-        <Text>More content 1</Text>
-        <Text>More content 2</Text>
-        <Text>More content 3</Text>
-        <Text>More content 4</Text>
-        <Text>More content 5</Text>
-        <Text>More content 6</Text>
-        <Text>More content 7</Text>
-        <Text>More content 8</Text>
-        <Text>More content 9</Text>
-        <Text>More content 10</Text>
-        <Text>More content 11</Text>
-        <Text>More content 12</Text>
-        <Text>More content 13</Text>
-        <Text>More content 14</Text>
-        <Text>More content 15</Text>
-        <Text>More content 16</Text>
-        <Text>More content 17</Text>
-        <Text>More content 18</Text>
-        <Text>More content 19</Text>
-        <Text>More content 20</Text>
+      
+        <CustomButton 
+          title="Press Me" 
+          handlePress={handlePress} 
+          containerStyles="mt-4 p-4 bg-blue-500"
+        />
       </View>
     </ScrollView>
-  );
+  )
 }
 
-export default Activity;
+export default Activity
