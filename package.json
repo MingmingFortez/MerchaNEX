@@ -2,7 +2,7 @@
   "name": "merchanex",
   "version": "1.0.0",
   "description": "The go to handyman app.",
-  "main": "app.js",
+  "main": "backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf build && cd ./client && npm run build --prod && cp -r build ../"
