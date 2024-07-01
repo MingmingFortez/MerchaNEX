@@ -1,6 +1,7 @@
 import { ScrollView, View, Text, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { router } from 'expo-router';
 
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
@@ -21,14 +22,14 @@ const SignUp = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post('https://merchanex-f8c543a3988b.herokuapp.com/user', { email: form.email, password: form.password });
+      const response = await axios.post('https://merchanex-f8c543a3988b.herokuapp.com/user', { id: 1, email: form.email, name: 'greg', upassword: form.password});
 
       // set it to global state...
 
       router.replace('/home')
 
     } catch (error) {
-      Alert.alert('Error', error.message);
+      Alert.alert('Error', error.response.data);
       console.log("caught error here");
     } finally {
       setIsSubmitting(false)
