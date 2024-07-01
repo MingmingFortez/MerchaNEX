@@ -14,8 +14,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+
+
 // Route to get all devices
-app.get("/devices", async (req, res) => {
+app.get("/", async (req, res) => {
     try {
         const query = 'SELECT "id", "name", "apuser" FROM A_APPLIANCE ORDER BY "id"';
         const result = await db.query(query);
