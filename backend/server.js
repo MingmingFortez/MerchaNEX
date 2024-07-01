@@ -10,15 +10,6 @@ const client = new Client({
 });
 client.connect();
 
-client.query('SELECT * FROM users', (err, res) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log(res.rows);
-    client.end();
-  });
-
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 5432;
