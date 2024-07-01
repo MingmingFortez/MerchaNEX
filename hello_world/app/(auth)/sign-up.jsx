@@ -1,9 +1,10 @@
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, Text, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
+import { createUser } from '../../../backend/user-model';
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -11,9 +12,26 @@ const SignUp = () => {
     password: ''
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const submit = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const submit = async () => {
+    if(!form.username || !form.email || !form.password) {
+      Alert.alert('Error', 'Please fill in all the fields');
+    }
+    setIsSubmitting(true);
+
+    try {
+      const result = await createUser(form.email, form.password);
+
+      // set it to global state...
+
+      router.replace('/home')
+
+    } catch (error) {
+      Alert.alert('Error', error.message);
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
