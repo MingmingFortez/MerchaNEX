@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
-import { createUser } from '../../../backend/user-model';
+import { User } from '../../../backend/user-model';
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -21,7 +21,7 @@ const SignUp = () => {
     setIsSubmitting(true);
 
     try {
-      const result = await createUser(form.email, form.password);
+      const result = await User.create({email: form.email, password: form.password});
 
       // set it to global state...
 
