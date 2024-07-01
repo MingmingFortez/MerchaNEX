@@ -8,6 +8,7 @@
     "build:ui": "rm -rf build && cd ./client && npm run build --prod && cp -r build ../"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "expo": "^51.0.16",
     "pg": "^8.12.0",
     "pg-hstore": "^2.3.4",
