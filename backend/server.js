@@ -14,6 +14,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.send('Hello, World!');
+});
+
 // Route to get all devices
 app.get("/devices", async (req, res) => {
     try {
