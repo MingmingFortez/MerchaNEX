@@ -5,14 +5,21 @@ const sequelize = new Sequelize('d21orf41k6c3r2', 'u8eniq7su6io8s', 'p54a40fc496
     host: 'ccba8a0vn4fb2p.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com',
     dialect: 'postgres',
 });
-try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
+// try {
+//     await sequelize.authenticate();
+//     console.log('Connection has been established successfully.');
+// } catch (error) {
+//     console.error('Unable to connect to the database:', error);
+// }
 
-export const User = sequelize.define('User', {
+const User = sequelize.define('User', {
   email: DataTypes.STRING,
   password: DataTypes.STRING,
 });
+
+(async () => {
+    await sequelize.sync({ force: true });
+    // Code here
+  })();
+
+export default User

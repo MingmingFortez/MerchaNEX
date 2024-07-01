@@ -41,7 +41,7 @@ app.get("/devices/:apuser", async (req, res) => {
     }
 });
 
-app.post("/adduser", async (req, res) => {
+app.post("/user", async (req, res) => {
     const { username, password } = req.body;
 
     console.log("Username:" + username);

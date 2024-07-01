@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
-import { User } from '../../../backend/user-model';
+import axios from 'axios'
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -15,13 +15,13 @@ const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submit = async () => {
-    if(!form.username || !form.email || !form.password) {
+    if(!form.email || !form.password) {
       Alert.alert('Error', 'Please fill in all the fields');
     }
     setIsSubmitting(true);
 
     try {
-      const result = await User.create({email: form.email, password: form.password});
+      const response = await axios.post('https://merchanex-f8c543a3988b.herokuapp.com/user', { email: form.email, password: form.password });
 
       // set it to global state...
 
@@ -29,6 +29,7 @@ const SignUp = () => {
 
     } catch (error) {
       Alert.alert('Error', error.message);
+      console.log("caught error here");
     } finally {
       setIsSubmitting(false)
     }
