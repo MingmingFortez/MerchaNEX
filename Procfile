@@ -1,1 +1,1 @@
-web: node hello_world/app/index.jsx
+web: node backend/server.js
