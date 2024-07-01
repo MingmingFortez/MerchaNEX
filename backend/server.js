@@ -41,23 +41,24 @@ app.get("/devices/:apuser", async (req, res) => {
     }
 });
 
-app.post("/user", async (req, res) => {
-    const { username, password } = req.body;
+app.post('/user', async (req, res) => {
+  const { id, email, name, upassword } = req.body;
 
-    console.log("Username:" + username);
-    console.log("Password:" + password);
+  console.log('ID:', id);
+  console.log('Email:', email);
+  console.log('Name:', name);
+  console.log('Password:', upassword);
 
-    const insertSMT = 'INSERT INTO accounts(username, password) VALUES ($1, $2)';
+  const insertSMT = 'INSERT INTO a_userepassword (id, email, name, upassword) VALUES ($1, $2, $3, $4)';
 
-    try {
-        const response = await db.query(insertSMT, [username, password]);
-        console.log("Data Saved");
-        console.log(response);
-        res.send("User added successfully");
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Error adding user");
-    }
+  try {
+      await db.query(insertSMT, [id, email, name, upassword]);
+      console.log('Data Saved');
+      res.send('User added successfully');
+  } catch (err) {
+      console.error('Error adding user:', err);
+      res.status(500).send('Error adding user');
+  }
 });
 
 app.get('/db', async (req, res) => {
