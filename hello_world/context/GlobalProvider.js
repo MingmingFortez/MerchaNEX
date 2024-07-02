@@ -9,7 +9,7 @@ const GlobalProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getCurrentUser()
+        getUser()
         .then((res) => {
             if (res) {
                 setIsLoggedIn(true);
