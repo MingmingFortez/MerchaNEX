@@ -43,7 +43,8 @@ app.get("/devices/:apuser", async (req, res) => {
     }
 });
 
-app.post('/user', async (req, res) => {
+// add new user to the database
+app.post('/setUser', async (req, res) => {
   const { id, email, name, upassword } = req.body;
 
   const salt = await bcrypt.genSalt(10);
@@ -66,6 +67,17 @@ app.post('/user', async (req, res) => {
   }
 });
 
+app.get("/getUser", async (req, res) => {
+    try {
+        const query = 'SELECT "id", "email", "name", "upassword" FROM A_USEREPASSWORD ORDER BY "id"';
+        const result = await db.query(query);
+        res.json(result.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error retrieving devices");
+    }
+});
+
 app.get('/db', async (req, res) => {
     try {
         const result = await db.query('SELECT * FROM test_table');
@@ -75,6 +87,8 @@ app.get('/db', async (req, res) => {
         res.status(500).send("Error " + err);
     }
 });
+
+// need to write a getCurrentUser function to use in GlobalProvider
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

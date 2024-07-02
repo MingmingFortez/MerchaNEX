@@ -6,10 +6,12 @@ import { router } from 'expo-router';
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
 import axios from 'axios'
+import { useGlobalContext } from '../../context/GlobalProvider';
 
 const bcrypt = require('bcryptjs');
 
 const SignUp = () => {
+  const { setUser, setIsLogged } = useGlobalContext();
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -27,9 +29,9 @@ const SignUp = () => {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(form.password, salt);
 
-      const response = await axios.post('https://merchanex-f8c543a3988b.herokuapp.com/user', { id: 3, email: form.email, name: 'bob', upassword: hashedPassword});
-
-      // set it to global state...
+      const result = await axios.post('https://merchanex-f8c543a3988b.herokuapp.com/setUser', { id: 3, email: form.email, name: 'bob', upassword: hashedPassword});
+      setUser(result);
+      setIsLogged(true);
 
       router.replace('/home')
 
