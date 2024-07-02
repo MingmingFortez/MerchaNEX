@@ -9,6 +9,8 @@ const cors = require("cors");
 const pg = require('pg');
 const db = require("./database");
 
+const bcrypt = require('bcrypt');
+
 const app = express();
 
 app.use(express.json());
@@ -44,15 +46,18 @@ app.get("/devices/:apuser", async (req, res) => {
 app.post('/user', async (req, res) => {
   const { id, email, name, upassword } = req.body;
 
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(upassword, salt);
+
   console.log('ID:', id);
   console.log('Email:', email);
   console.log('Name:', name);
-  console.log('Password:', upassword);
+  console.log('Password:', hashedPassword);
 
   const insertSMT = 'INSERT INTO a_userepassword (id, email, name, upassword) VALUES ($1, $2, $3, $4)';
 
   try {
-      await db.query(insertSMT, [id, email, name, upassword]);
+      await db.query(insertSMT, [id, email, name, hashedPassword]);
       console.log('Data Saved');
       res.send('User added successfully');
   } catch (err) {

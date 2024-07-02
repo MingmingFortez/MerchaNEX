@@ -7,6 +7,8 @@ import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
 import axios from 'axios'
 
+const bcrypt = require('bcryptjs');
+
 const SignUp = () => {
   const [form, setForm] = useState({
     email: '',
@@ -22,7 +24,10 @@ const SignUp = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post('https://merchanex-f8c543a3988b.herokuapp.com/user', { id: 1, email: form.email, name: 'greg', upassword: form.password});
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(form.password, salt);
+
+      const response = await axios.post('https://merchanex-f8c543a3988b.herokuapp.com/user', { id: 3, email: form.email, name: 'bob', upassword: hashedPassword});
 
       // set it to global state...
 
