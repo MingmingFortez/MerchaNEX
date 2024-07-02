@@ -9,7 +9,7 @@ const cors = require("cors");
 const pg = require('pg');
 const db = require("./database");
 
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 const app = express();
 

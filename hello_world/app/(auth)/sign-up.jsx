@@ -8,7 +8,7 @@ import CustomButton from '../../components/CustomButton';
 import axios from 'axios'
 import { useGlobalContext } from '../../context/GlobalProvider';
 
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 const SignUp = () => {
   const { setUser, setIsLogged } = useGlobalContext();
